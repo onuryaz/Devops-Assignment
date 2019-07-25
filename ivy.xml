@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+
+<info organisation="org.apache" module="assignment" revision="${revision}"/>
+
+	
+   <dependencies>
+        <dependency org="junit" name="junit" rev="4.10" />
+        <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.12.0" transitive="false" />
+  		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.12.0" transitive="false" />
+        <dependency org="org.apache.commons" name="commons-lang3" rev="3.1"/>
+
+        
+    </dependencies>
+    
+</ivy-module>
+    

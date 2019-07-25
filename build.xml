@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Devops Project" xmlns:ivy="antlib:org.apache.ivy.ant" default="compile" basedir=".">
+<!-- explaination: added ivy namespace to project definiton /////// default indicates which task to start to run , basedir indicates current directory -->
+	
+	<ivy:settings file="./ivysettings.xml" />
+
+
+	
+	<target name="resolve" description="retrieve dependencies with ivy">
+	<echo message="Getting dependencies..." />
+	<ivy:resolve />
+	<!-- jar file depedencies will be downloaded -->
+	<ivy:cachepath pathid="default.classpath" />
+	<!-- classpath points to the resolved artifacts in the cache --> 
+	</target>
+
+
+	<!-- install ivy -->
+	<target name="ivy" description="Install ivy">
+		<mkdir dir="${user.home}/.ant/lib" />
+		<get dest="${user.home}/.ant/lib/ivy.jar" 
+			src="http://search.maven.org/remotecontent?filepath=org/apache/ivy/ivy/2.4.0-rc1/ivy-2.4.0-rc1.jar" />
+	</target>
+
+	<target  name="delete">
+	<echo>  Delete files if exists  </echo>
+		<delete failonerror="false" dir="bin" />
+		<delete failonerror="false" dir="test-output" />
+	</target>
+
+
+
+
+	<target name="create" depends="delete">
+	<echo>  Create files....  </echo>
+		<mkdir dir="bin" />
+		<mkdir dir="test-output" />
+	</target>
+	
+ 
+	
+	<target name="compile" depends="resolve">
+		
+		<javac includeantruntime="true" srcdir="C:\Users\onur\eclipse-workspace3\Devops-Assignment\source" destdir="C:\Users\onur\eclipse-workspace3\Devops-Assignment\bin" includes="**/*.java">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	 <target name="unit-test" depends="compile">
+		
+        <!--    <java classpathref="classpath" classname="com.assignment.test.CaseOneTest" fork="true"/>  -->
+	 	<!--  there are two ways two run junit testcases -->
+		<junit haltonfailure="false" printsummary="true">
+        		<classpath refid="default.classpath"/>
+        		<test name="ASTestcase"></test>
+        </junit>
+				
+    </target>
+	
+
+</project>	
